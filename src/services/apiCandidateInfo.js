@@ -1,15 +1,31 @@
-import supabase from "./supabase";
+import supabase from './supabase'
 
-export async function getCandidateInfo(){
+export async function getCandidateInfo(filters) {
 
-let { data: data, error } = await supabase
-  .from('candidate-info')
-  .select('*')
+  const{vehicleType , amountPaid, amountSort} = filters;
 
+  let query = supabase.from('candidate-info').select('*');
 
-    if (error) {
+  // Filter by vehicle type if not 'all'
+  if (vehicleType && vehicleType !== 'all') {
+    query = query.eq('vehicle_type', vehicleType);
+  }
+
+  if (amountPaid && amountPaid !== 'all') {
+    query = query.lt('amount_paid', amountPaid);
+  }
+  if (amountSort === 'ascending') {
+    query = query.order('amount_paid', { ascending: true });
+  } else if (amountSort === 'descending') {
+    query = query.order('amount_paid', { ascending: false });
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
     console.error(error);
-    throw new Error("Settings could not be loaded");
-  } 
+    throw new Error('Candidates could not be loaded');
+  }
+
   return data;
 }
