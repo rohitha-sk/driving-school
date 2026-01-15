@@ -2,10 +2,12 @@ import React from 'react'
 import TableRow from './TableRow'
 import TableHeader from './table-header/TableHeader'
 import useCandidateInfo from './custom-hook/InfoUsage';
+import Pagination from './pagination/Pagination';
 
 
 function InfoTable() {
-  const {data,isLoading,error, handleVehicleType, handleAmountSelection, handleAmountSort}= useCandidateInfo();
+  const {data,isLoading,error, handleVehicleType, handleAmountSelection, handleAmountSort, count}= useCandidateInfo();
+
   
   if(isLoading){
     return <div>Loading...</div>
@@ -57,6 +59,7 @@ function InfoTable() {
   )}
          
         </tbody>
+        <tfoot><Pagination count={count} /> </tfoot>
       </table>
     </div>
   )

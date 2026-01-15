@@ -1,10 +1,11 @@
+import { PAGE_SIZE } from '../pages/constants';
 import supabase from './supabase'
 
-export async function getCandidateInfo(filters) {
+export async function getCandidateInfo(filters, page) {
 
   const{vehicleType , amountPaid, amountSort} = filters;
 
-  let query = supabase.from('candidate-info').select('*');
+  let query = supabase.from('candidate-info').select('*', { count: 'exact' });
 
   // Filter by vehicle type if not 'all'
   if (vehicleType && vehicleType !== 'all') {
@@ -20,12 +21,19 @@ export async function getCandidateInfo(filters) {
     query = query.order('amount_paid', { ascending: false });
   }
 
-  const { data, error } = await query;
+    if(page){
+    const from = ( page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error(error);
     throw new Error('Candidates could not be loaded');
   }
 
-  return data;
+  return { data, count };
 }

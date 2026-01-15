@@ -6,6 +6,8 @@ import { getCandidateInfo } from '../../../services/apiCandidateInfo';
 function useCandidateInfo() {
      const[searchParams,setSearchParams]= useSearchParams();
 
+       const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+
   const selectedVehicleType = searchParams.get('vehicleType') || 'all';
   const selectedAmountPaid = searchParams.get('amountPaid') || 'all';
   const selectedAmountSort = searchParams.get('amountSort') || 'reset';
@@ -49,12 +51,15 @@ function useCandidateInfo() {
   }
 
 
-  const{data,isLoading,error}= useQuery({
-    queryKey: ['candidateData', filters],
-    queryFn:  () => getCandidateInfo(filters)
+  const{data:queryData,isLoading,error}= useQuery({
+    queryKey: ['candidateData', filters, page],
+    queryFn:  () => getCandidateInfo(filters, page),
   });
 
-  return {data,isLoading,error, handleVehicleType, handleAmountSelection, handleAmountSort};
+  const data = queryData?.data || [];
+  const count = queryData?.count || 0;
+
+  return {data,isLoading,error, handleVehicleType, handleAmountSelection, handleAmountSort, count};
 }
 
 export default useCandidateInfo;
