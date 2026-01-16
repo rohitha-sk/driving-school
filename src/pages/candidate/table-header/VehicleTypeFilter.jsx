@@ -10,32 +10,32 @@ function VehicleTypeFilter({onVehicleTypeChange }) {
       <div className="flex bg-gray-100 p-1 rounded-lg divide-x divide-gray-300">
           <button 
           onClick={() => onVehicleTypeChange('all')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 rounded-l-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 rounded-l-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             All
           </button>
           <button 
           onClick={() => onVehicleTypeChange('car')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             Car
           </button>
           <button 
           onClick={() => onVehicleTypeChange('bike')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             Bike
           </button>
           <button 
           onClick={() => onVehicleTypeChange('threewheel')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             Threewheel
           </button>
           <button 
           onClick={() => onVehicleTypeChange('bus')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 rounded-r-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 rounded-r-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             Bus
           </button>
            <button 
           onClick={() => onVehicleTypeChange('van')}
-          className="px-4 py-2 text-sm font-medium text-gray-700 rounded-r-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
+          className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 rounded-r-md hover:bg-blue-100 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white active:bg-blue-500 active:text-white transition-colors">
             Van
           </button>
       </div>
