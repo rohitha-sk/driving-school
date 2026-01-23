@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TableRow from './TableRow'
 import TableHeader from './table-header/TableHeader'
 import useCandidateInfo from './custom-hook/InfoUsage';
@@ -7,7 +7,7 @@ import Pagination from './pagination/Pagination';
 
 function InfoTable() {
   const {data,isLoading,error, handleVehicleType, handleAmountSelection, handleAmountSort, count}= useCandidateInfo();
-
+    const [openDropdown, setOpenDropdown] = useState(null)
   
   if(isLoading){
     return <div>Loading...</div>
@@ -43,6 +43,9 @@ function InfoTable() {
             <th className="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider border-b">
               Vehicle Type
             </th>
+             <th className="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider border-b">
+              Action
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
@@ -54,7 +57,7 @@ function InfoTable() {
     </tr>
   ) : (
     data?.map((candidate) => (
-      <TableRow key={candidate.id} candidate={candidate} />
+      <TableRow key={candidate.id} candidate={candidate} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
     ))
   )}
          

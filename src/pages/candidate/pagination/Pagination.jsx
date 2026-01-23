@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+
 import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '../../constants';
 import {
@@ -77,7 +77,7 @@ function Pagination({count}) {
           </div>
 
           {/* Right side - Shadcn Pagination */}
-          <ShadcnPagination>
+          <ShadcnPagination className="mx-0 w-auto justify-end">
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious 

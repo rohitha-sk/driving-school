@@ -1,9 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react'
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
+import React, { use } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { getCandidateInfo } from '../../../services/apiCandidateInfo';
 
 function useCandidateInfo() {
+
+    const queryClient = useQueryClient();
+
      const[searchParams,setSearchParams]= useSearchParams();
 
        const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
@@ -54,6 +57,11 @@ function useCandidateInfo() {
   const{data:queryData,isLoading,error}= useQuery({
     queryKey: ['candidateData', filters, page],
     queryFn:  () => getCandidateInfo(filters, page),
+  });
+
+  queryClient.prefetchQuery({
+    queryKey: ['candidateData', filters, page + 1],
+    queryFn: () => getCandidateInfo(filters, page + 1),
   });
 
   const data = queryData?.data || [];

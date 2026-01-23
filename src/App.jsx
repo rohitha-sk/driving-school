@@ -3,6 +3,8 @@ import InfoTable from './pages/candidate/InfoTable'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CandidateDetails from './pages/candidate/action-menu/CandidateDetails';
+
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/candidate-info' element={<InfoTable />} />
+          <Route path='/candidate/:id' element={<CandidateDetails />} />
         </Routes>
         </BrowserRouter>
       </QueryClientProvider>

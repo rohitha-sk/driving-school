@@ -37,3 +37,19 @@ export async function getCandidateInfo(filters, page) {
 
   return { data, count };
 }
+
+export async function getCandidateById(candidateId) {
+  const { data, error } = await supabase
+    .from('candidate-info')
+    .select('*')
+    .eq('id', candidateId)
+    .single();
+
+     if (error) {
+    console.error(error);
+    throw new Error('Candidates could not be loaded');
+  }
+
+  return data;
+
+}
